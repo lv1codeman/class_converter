@@ -223,90 +223,6 @@
           $("#output1_count").text("");
         });
       }); //End of $(document).ready(async function () {
-
-      // function accessJsonData() {
-      //   if (jsonData) {
-      //     console.log("現在可以使用 JSON 資料: ", jsonData);
-      //   } else {
-      //     console.log("JSON 資料尚未加載完成");
-      //   }
-      // }
-
-      // $(function () {
-      //   var jsonData = null;
-
-      //   // 使用 fetch API 來讀取本地的 JSON 文件
-      //   fetch("deptlist.json")
-      //     .then((response) => response.json())
-      //     .then((data) => {
-      //       // 將資料儲存在變數 jsonData 中
-      //       jsonData = data;
-
-      //       // 在 console 中檢視資料是否已成功儲存
-      //       console.log(jsonData);
-
-      //       // 你可以在這裡使用 jsonData 做進一步操作
-      //     })
-      //     .catch((error) => console.error("Error fetching JSON:", error));
-
-      //   // console.log(jsonData);
-
-      //   // $("#res1").text(jsonData[0].deptNM)
-
-      //   $("#input1").on("input", function () {
-      //     // setTimeout(function () {
-      //     var content = $("#input1").val();
-      //     console.log("粘貼的內容: \n", content); // 檢查粘貼後的內容
-
-      //     // 使用正則表達式處理所有可能的換行符
-      //     var lines = content.trim().split(/[\r\n]+/);
-      //     var res = [];
-      //     lines.forEach((item) => {
-      //       var first = item.substring(0, 1);
-      //       var second = item.substring(0, 2);
-      //       console.log(item.substring(0, 1));
-      //       console.log(item.substring(0, 2));
-
-      //       switch (first) {
-      //         case "輔":
-      //           res.push("輔諮系");
-      //           break;
-      //         case "特":
-      //           res.push("特教系");
-      //           break;
-      //         case "復":
-      //           res.push("復諮所");
-      //           break;
-      //         case "高":
-      //           res.push("高照原民專班");
-      //           break;
-      //         case "科":
-      //           res.push("科教所");
-      //           break;
-      //         case "數":
-      //           res.push("數學系");
-      //           break;
-      //         case "物":
-      //           res.push("物理系");
-      //           break;
-      //       }
-      //     });
-
-      //     var count = lines.length;
-      //     $("#row_count").text("共有 " + count + " 筆資料");
-
-      //     var output = res.toString().replaceAll(",", "\r\n");
-
-      //     $("#output1").val(output);
-      //     console.log(output);
-      //     // }, 100); // 延遲100毫秒，確保資料已完全貼入
-      //   });
-
-      //   $("#btnClear").click(function () {
-      //     $("#input1").val("");
-      //     $("#row_count").text("");
-      //   });
-      // });
     </script>
   </head>
   <body>
@@ -324,24 +240,5 @@
         <div id="output1_count"></div>
       </div>
     </div>
-
-    <!-- <div id="res1"></div> -->
-    <!-- <div class="row p-2">
-      <h1>系所聯絡資訊</h1>
-      <table id="deptTable">
-        <thead>
-          <tr>
-            <th>系所名稱</th>
-            <th>學院</th>
-            <th>聯絡人</th>
-            <th>分機</th>
-            <th>Email</th>
-          </tr>
-        </thead>
-        <tbody>
-          
-        </tbody>
-      </table>
-    </div> -->
   </body>
 </html>
