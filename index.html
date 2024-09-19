@@ -77,7 +77,7 @@
 
       function doConvert() {
         var content = $("#input1").val();
-        console.log("粘貼的內容: \n", content); // 檢查粘貼後的內容
+        // console.log("粘貼的內容: \n", content); // 檢查粘貼後的內容
 
         // 使用正則表達式處理所有可能的換行符
         var lines = content.trim().split(/[\r\n]+/);
@@ -86,8 +86,6 @@
           var first = item.substring(0, 1);
           var second = item.substring(0, 2);
           var third = item.substring(0, 3);
-          // console.log(item.substring(0, 1));
-          // console.log(item.substring(0, 2));
 
           switch (first) {
             case "輔":
@@ -283,7 +281,7 @@
   </head>
   <body>
     <div class="container">
-      <div class="row text-center mt-5">
+      <div class="row text-center mt-5 mb-3">
         <h1>班級轉換</h1>
       </div>
       <div class="row p-2 border">
@@ -292,8 +290,9 @@
         <li>貼上後想看不同結果可選擇下拉選項</li>
         <li>可將結果複製貼回Excel中使用。</li>
       </div>
+      <div class="row border">
       <div class="row">
-        <div class="col-12 p-2 border">
+        <div class="col-12 p-2 ">
           <div class="d-flex flex-wrap">
             <select
               id="convertType"
@@ -317,17 +316,17 @@
         </div>
       </div>
       <div class="row d-flex justify-content-center">
-        <div class="col-lg-6 col-md-6 col-sm-6 p-2 border">
+        <div class="col-lg-6 col-md-6 col-sm-6 p-2 ">
           <textarea name="" id="input1"></textarea>
           <div id="input1_count"></div>
         </div>
-        <div class="col-lg-6 col-md-6 col-sm-6 p-2 border">
+        <div class="col-lg-6 col-md-6 col-sm-6 p-2 ">
           <textarea name="" id="output1"></textarea>
           <div id="output1_count"></div>
         </div>
       </div>
       </div>
     </div>
-
+  </div>
   </body>
 </html>
