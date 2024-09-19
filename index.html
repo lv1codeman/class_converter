@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>班級轉換</title>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css"
+      integrity="sha384-r4NyP46KrjDleawBgD5tp8Y7UzmLA05oM1iAEQ17CSuDqnUK2+k9luXQOfXJCJ4I"
+      crossorigin="anonymous"
+    />
+    <script
+      src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+      integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/js/bootstrap.min.js"
+      integrity="sha384-oesi62hOLfzrys4LxRF63OJCXdXDipiYWBnvTl9Y9/TRlw5xlKIEHpNyvvDShgf/"
+      crossorigin="anonymous"
+    ></script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <style>
+      #input1,
+      #output1 {
+        width: 200px; /* 初始寬度 */
+        max-width: 270px; /* 最大寬度 */
+        resize: both; /* 允許水平拉伸 */
+      }
+    </style>
+    <script>
+      var jsonData = null;
+
+      $(document).ready(async function () {
+        // 使用 async/await 來讀取 JSON 資料
+        try {
+          const response = await fetch("deptlist.json");
+          jsonData = await response.json();
+          console.log("JSON 資料已加載: ", jsonData);
+        } catch (error) {
+          console.error("Error fetching JSON:", error);
+        }
+
+        // $("#res1").text("aaa" + jsonData[0].deptNM);
+
+        $("#input1").on("input", function () {
+          var content = $("#input1").val();
+          console.log("粘貼的內容: \n", content); // 檢查粘貼後的內容
+
+          // 使用正則表達式處理所有可能的換行符
+          var lines = content.trim().split(/[\r\n]+/);
+          var res = [];
+          lines.forEach((item) => {
+            var first = item.substring(0, 1);
+            var second = item.substring(0, 2);
+            var third = item.substring(0, 3);
+            console.log(item.substring(0, 1));
+            console.log(item.substring(0, 2));
+
+            switch (first) {
+              case "輔":
+                res.push(3);
+                break;
+              case "特":
+                if (second == "特殊") {
+                  res.push(1);
+                } else {
+                  res.push(4);
+                }
+                break;
+              case "教":
+                res.push(5);
+                break;
+              case "復":
+                res.push(6);
+                break;
+              case "高":
+                res.push(7);
+                break;
+              case "國":
+                if (second == "國際") {
+                  res.push(34);
+                } else {
+                  res.push(9);
+                }
+                break;
+              case "英":
+                res.push(10);
+                break;
+              case "地":
+                res.push(11);
+                break;
+              case "美":
+                res.push(12);
+                break;
+              case "科":
+                if (third == "科英") {
+                  res.push(13);
+                } else {
+                  res.push(18);
+                }
+                break;
+              case "翻":
+                res.push(14);
+                break;
+              case "歷":
+                res.push(15);
+                break;
+              case "台":
+                res.push(16);
+                break;
+              case "數":
+                res.push(19);
+                break;
+              case "物":
+                res.push(20);
+                break;
+              case "生":
+                res.push(21);
+                break;
+              case "化":
+                res.push(22);
+                break;
+              case "光":
+                res.push(23);
+                break;
+              case "統":
+                res.push(24);
+                break;
+              case "理":
+                res.push(25);
+                break;
+              case "工":
+                if (third == "工學位") {
+                  res.push(36);
+                } else {
+                  res.push(27);
+                }
+                break;
+              case "鑄":
+                res.push(27);
+                break;
+              case "人":
+                res.push(28);
+                break;
+              case "車":
+                res.push(29);
+                break;
+              case "A":
+                res.push(30);
+                break;
+              case "電":
+                if (second == "電機") {
+                  res.push(32);
+                } else {
+                  res.push(34);
+                }
+                break;
+              case "機":
+                if (third == "機電產") {
+                  res.push(27);
+                } else {
+                  res.push(33);
+                }
+                break;
+              case "資":
+                if (second == "資工") {
+                  res.push(35);
+                } else if (second == "資管") {
+                  res.push(39);
+                }
+                break;
+              case "會":
+                res.push(40);
+                break;
+              case "企":
+                res.push(38);
+                break;
+              case "財":
+                res.push(41);
+                break;
+              case "運":
+                if (second == "運健") {
+                  res.push(44);
+                } else if (second == "運碩") {
+                  res.push(44);
+                } else {
+                  res.push(43);
+                }
+                break;
+              case "公":
+                res.push(45);
+                break;
+              default:
+                res.push(0);
+                break;
+            }
+          });
+          var input_count = lines.length;
+          $("#input1_count").text("共有 " + input_count + " 筆資料");
+
+          var res2 = [];
+          res.forEach((item) => {
+            res2.push(jsonData[item].deptNM);
+          });
+
+          var output = res2.toString().replaceAll(",", "\r\n");
+
+          $("#output1").val(output);
+          console.log(output);
+
+          var output_lines = output.trim().split(/[\r\n]+/);
+          var output_count = output_lines.length;
+          $("#output1_count").text("共有 " + output_count + " 筆資料");
+        });
+
+        $("#btnClear").click(function () {
+          $("#input1").val("");
+          $("#output1").val("");
+          $("#input1_count").text("");
+          $("#output1_count").text("");
+        });
+      }); //End of $(document).ready(async function () {
+
+      // function accessJsonData() {
+      //   if (jsonData) {
+      //     console.log("現在可以使用 JSON 資料: ", jsonData);
+      //   } else {
+      //     console.log("JSON 資料尚未加載完成");
+      //   }
+      // }
+
+      // $(function () {
+      //   var jsonData = null;
+
+      //   // 使用 fetch API 來讀取本地的 JSON 文件
+      //   fetch("deptlist.json")
+      //     .then((response) => response.json())
+      //     .then((data) => {
+      //       // 將資料儲存在變數 jsonData 中
+      //       jsonData = data;
+
+      //       // 在 console 中檢視資料是否已成功儲存
+      //       console.log(jsonData);
+
+      //       // 你可以在這裡使用 jsonData 做進一步操作
+      //     })
+      //     .catch((error) => console.error("Error fetching JSON:", error));
+
+      //   // console.log(jsonData);
+
+      //   // $("#res1").text(jsonData[0].deptNM)
+
+      //   $("#input1").on("input", function () {
+      //     // setTimeout(function () {
+      //     var content = $("#input1").val();
+      //     console.log("粘貼的內容: \n", content); // 檢查粘貼後的內容
+
+      //     // 使用正則表達式處理所有可能的換行符
+      //     var lines = content.trim().split(/[\r\n]+/);
+      //     var res = [];
+      //     lines.forEach((item) => {
+      //       var first = item.substring(0, 1);
+      //       var second = item.substring(0, 2);
+      //       console.log(item.substring(0, 1));
+      //       console.log(item.substring(0, 2));
+
+      //       switch (first) {
+      //         case "輔":
+      //           res.push("輔諮系");
+      //           break;
+      //         case "特":
+      //           res.push("特教系");
+      //           break;
+      //         case "復":
+      //           res.push("復諮所");
+      //           break;
+      //         case "高":
+      //           res.push("高照原民專班");
+      //           break;
+      //         case "科":
+      //           res.push("科教所");
+      //           break;
+      //         case "數":
+      //           res.push("數學系");
+      //           break;
+      //         case "物":
+      //           res.push("物理系");
+      //           break;
+      //       }
+      //     });
+
+      //     var count = lines.length;
+      //     $("#row_count").text("共有 " + count + " 筆資料");
+
+      //     var output = res.toString().replaceAll(",", "\r\n");
+
+      //     $("#output1").val(output);
+      //     console.log(output);
+      //     // }, 100); // 延遲100毫秒，確保資料已完全貼入
+      //   });
+
+      //   $("#btnClear").click(function () {
+      //     $("#input1").val("");
+      //     $("#row_count").text("");
+      //   });
+      // });
+    </script>
+  </head>
+  <body>
+    <h1>班級轉換</h1>
+
+    <div class="row p-2">
+      <div class="col-3 p-2 border">
+        <textarea name="" id="input1" rows="10"></textarea>
+        <div id="input1_count"></div>
+
+        <input id="btnClear" type="button" value="clear" />
+      </div>
+      <div class="col-3 p-2 border">
+        <textarea name="" id="output1" rows="10"></textarea>
+        <div id="output1_count"></div>
+      </div>
+    </div>
+
+    <!-- <div id="res1"></div> -->
+    <!-- <div class="row p-2">
+      <h1>系所聯絡資訊</h1>
+      <table id="deptTable">
+        <thead>
+          <tr>
+            <th>系所名稱</th>
+            <th>學院</th>
+            <th>聯絡人</th>
+            <th>分機</th>
+            <th>Email</th>
+          </tr>
+        </thead>
+        <tbody>
+          
+        </tbody>
+      </table>
+    </div> -->
+  </body>
+</html>
