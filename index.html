@@ -51,21 +51,17 @@
         } catch (error) {
           console.error("Error fetching JSON:", error);
         }
-
-        // $("#res1").text("aaa" + jsonData[0].deptNM);
-
         $("#input1").on("input", function () {
           doConvert();
         });
 
         $("#convertType").on("change", function () {
-          // alert("select something...");
           doConvert();
         });
 
-        $("#btnSubmit").click(function () {
-          doConvert();
-        });
+        // $("#btnSubmit").click(function () {
+        //   doConvert();
+        // });
 
         $("#btnClear").click(function () {
           $("#input1").val("");
@@ -315,14 +311,6 @@
               <option value="8">課務組承辦人分機</option>
               <option value="9">課務組承辦人Email</option>
             </select>
-  
-            <!-- <input
-              class="btn btn-primary"
-              id="btnClear"
-              type="button"
-              value="clear"
-            /> -->
-            <!-- <a id="btnSubmit" class="btn btn-primary" role="button">clear</a> -->
             <!-- <button id="btnSubmit" class="btn btn-primary mr-2">Submit</button> -->
             <button id="btnClear" class="btn btn-primary">Clear</button>
           </div>
