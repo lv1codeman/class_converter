@@ -290,7 +290,7 @@
         });
 
         var output = res2.toString().replaceAll(",", "\r\n");
-
+        output = output + "\r\n"; //讓左右框高度一致，不影響行數判斷
         $("#output1").val(output);
         console.log(output);
 
