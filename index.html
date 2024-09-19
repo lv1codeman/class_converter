@@ -26,7 +26,8 @@
       #input1,
       #output1 {
         width: 200px; /* 初始寬度 */
-        max-width: 270px; /* 最大寬度 */
+        height: 280px;
+        max-width: 320px; /* 最大寬度 */
         resize: both; /* 允許水平拉伸 */
       }
 
@@ -64,7 +65,11 @@
 
         $("#btnClear").click(function () {
           $("#input1").val("");
+          $("#input1").css("width", "200px");
+          $("#input1").css("height", "280px");
           $("#output1").val("");
+          $("#output1").css("width", "200px");
+          $("#output1").css("height", "280px");
           $("#input1_count").text("");
           $("#output1_count").text("");
         });
@@ -277,8 +282,9 @@
     </script>
   </head>
   <body>
-    <h1>班級轉換</h1>
-
+    <div class="row p-2 d-flex justify-content-center text-center mt-5">
+      <h1>班級轉換</h1>
+    </div>
     <div class="row p-2 d-flex justify-content-center">
       <div class="col-lg-6 col-md-8 col-sm-12 p-2 border">
         <div class="d-flex">
@@ -313,11 +319,11 @@
     </div>
     <div class="row p-2 d-flex justify-content-center">
       <div class="col-lg-3 col-md-4 col-sm-6 p-2 border">
-        <textarea name="" id="input1" rows="10"></textarea>
+        <textarea name="" id="input1"></textarea>
         <div id="input1_count"></div>
       </div>
       <div class="col-lg-3 col-md-4 col-sm-6 p-2 border">
-        <textarea name="" id="output1" rows="10"></textarea>
+        <textarea name="" id="output1"></textarea>
         <div id="output1_count"></div>
       </div>
     </div>
