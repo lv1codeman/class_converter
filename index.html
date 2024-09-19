@@ -23,6 +23,10 @@
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <style>
+      .container {
+        max-width: 800px;
+      }
+
       #input1,
       #output1 {
         width: 200px; /* 初始寬度 */
@@ -282,50 +286,60 @@
     </script>
   </head>
   <body>
-    <div class="row p-2 d-flex justify-content-center text-center mt-5">
-      <h1>班級轉換</h1>
-    </div>
-    <div class="row p-2 d-flex justify-content-center">
-      <div class="col-lg-6 col-md-8 col-sm-12 p-2 border">
-        <div class="d-flex">
-          <select
-            id="convertType"
-            class="form-select mr-2"
-            aria-label="Default select example"
-          >
-            <option value="0" selected>班級簡稱</option>
-            <option value="1">班級全名</option>
-            <option value="2">學院簡稱</option>
-            <option value="3">學院全名</option>
-            <option value="4">系辦助理</option>
-            <option value="5">系辦助理分機</option>
-            <option value="6">系辦助理Email</option>
-            <option value="7">課務組承辦人</option>
-            <option value="8">課務組承辦人分機</option>
-            <option value="9">課務組承辦人Email</option>
-          </select>
-
-          <!-- <input
-            class="btn btn-primary"
-            id="btnClear"
-            type="button"
-            value="clear"
-          /> -->
-          <!-- <a id="btnSubmit" class="btn btn-primary" role="button">clear</a> -->
-          <button id="btnSubmit" class="btn btn-primary mr-2">Submit</button>
-          <button id="btnClear" class="btn btn-primary">Clear</button>
+    <div class="container">
+      <div class="row text-center mt-5">
+        <h1>班級轉換</h1>
+      </div>
+      <div class="row p-2 border">
+        <h3>使用教學</h3>
+        <li>在左輸入框貼上從Excel複製的班級簡稱，右邊輸入框會自動產出結果。</li>
+        <li>貼上後想看不同結果可選擇下拉選項</li>
+        <li>可將結果複製貼回Excel中使用。</li>
+      </div>
+      <div class="row">
+        <div class="col-12 p-2 border">
+          <div class="d-flex flex-wrap">
+            <select
+              id="convertType"
+              class="form-select mr-3"
+              aria-label="Default select example"
+            >
+              <option value="0" selected>班級簡稱</option>
+              <option value="1">班級全名</option>
+              <option value="2">學院簡稱</option>
+              <option value="3">學院全名</option>
+              <option value="4">系辦助理</option>
+              <option value="5">系辦助理分機</option>
+              <option value="6">系辦助理Email</option>
+              <option value="7">課務組承辦人</option>
+              <option value="8">課務組承辦人分機</option>
+              <option value="9">課務組承辦人Email</option>
+            </select>
+  
+            <!-- <input
+              class="btn btn-primary"
+              id="btnClear"
+              type="button"
+              value="clear"
+            /> -->
+            <!-- <a id="btnSubmit" class="btn btn-primary" role="button">clear</a> -->
+            <!-- <button id="btnSubmit" class="btn btn-primary mr-2">Submit</button> -->
+            <button id="btnClear" class="btn btn-primary">Clear</button>
+          </div>
         </div>
       </div>
-    </div>
-    <div class="row p-2 d-flex justify-content-center">
-      <div class="col-lg-3 col-md-4 col-sm-6 p-2 border">
-        <textarea name="" id="input1"></textarea>
-        <div id="input1_count"></div>
+      <div class="row d-flex justify-content-center">
+        <div class="col-lg-6 col-md-6 col-sm-6 p-2 border">
+          <textarea name="" id="input1"></textarea>
+          <div id="input1_count"></div>
+        </div>
+        <div class="col-lg-6 col-md-6 col-sm-6 p-2 border">
+          <textarea name="" id="output1"></textarea>
+          <div id="output1_count"></div>
+        </div>
       </div>
-      <div class="col-lg-3 col-md-4 col-sm-6 p-2 border">
-        <textarea name="" id="output1"></textarea>
-        <div id="output1_count"></div>
       </div>
     </div>
+
   </body>
 </html>
