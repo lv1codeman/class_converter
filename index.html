@@ -53,6 +53,11 @@
         }
         $("#input1").on("input", function () {
           doConvert();
+          $("#output1").scrollTop = $("#output1").scrollHeight;
+
+          var output1 = $("#output1");
+          output1.scrollTop(output1[0].scrollHeight);
+          // textarea.scrollTop = textarea.scrollHeight;
         });
 
         $("#convertType").on("change", function () {
@@ -72,6 +77,22 @@
           $("#output1").css("height", "280px");
           $("#input1_count").text("");
           $("#output1_count").text("");
+        });
+
+        const textarea1 = document.getElementById("input1");
+        const textarea2 = document.getElementById("output1");
+
+        function syncScroll(source, target) {
+          target.scrollTop = source.scrollTop;
+          target.scrollLeft = source.scrollLeft;
+        }
+
+        textarea1.addEventListener("scroll", function () {
+          syncScroll(textarea1, textarea2);
+        });
+
+        textarea2.addEventListener("scroll", function () {
+          syncScroll(textarea2, textarea1);
         });
       }); //End of $(document).ready(async function () {
 
@@ -291,42 +312,41 @@
         <li>可將結果複製貼回Excel中使用。</li>
       </div>
       <div class="row border">
-      <div class="row">
-        <div class="col-12 p-2 ">
-          <div class="d-flex flex-wrap">
-            <select
-              id="convertType"
-              class="form-select mr-3"
-              aria-label="Default select example"
-            >
-              <option value="0" selected>班級簡稱</option>
-              <option value="1">班級全名</option>
-              <option value="2">學院簡稱</option>
-              <option value="3">學院全名</option>
-              <option value="4">系辦助理</option>
-              <option value="5">系辦助理分機</option>
-              <option value="6">系辦助理Email</option>
-              <option value="7">課務組承辦人</option>
-              <option value="8">課務組承辦人分機</option>
-              <option value="9">課務組承辦人Email</option>
-            </select>
-            <!-- <button id="btnSubmit" class="btn btn-primary mr-2">Submit</button> -->
-            <button id="btnClear" class="btn btn-primary">Clear</button>
+        <div class="row">
+          <div class="col-12 p-2">
+            <div class="d-flex flex-wrap">
+              <select
+                id="convertType"
+                class="form-select mr-3"
+                aria-label="Default select example"
+              >
+                <option value="0" selected>班級簡稱</option>
+                <option value="1">班級全名</option>
+                <option value="2">學院簡稱</option>
+                <option value="3">學院全名</option>
+                <option value="4">系辦助理</option>
+                <option value="5">系辦助理分機</option>
+                <option value="6">系辦助理Email</option>
+                <option value="7">課務組承辦人</option>
+                <option value="8">課務組承辦人分機</option>
+                <option value="9">課務組承辦人Email</option>
+              </select>
+              <!-- <button id="btnSubmit" class="btn btn-primary mr-2">Submit</button> -->
+              <button id="btnClear" class="btn btn-primary">Clear</button>
+            </div>
+          </div>
+        </div>
+        <div class="row d-flex justify-content-center">
+          <div class="col-lg-6 col-md-6 col-sm-6 p-2">
+            <textarea name="" id="input1"></textarea>
+            <div id="input1_count"></div>
+          </div>
+          <div class="col-lg-6 col-md-6 col-sm-6 p-2">
+            <textarea name="" id="output1"></textarea>
+            <div id="output1_count"></div>
           </div>
         </div>
       </div>
-      <div class="row d-flex justify-content-center">
-        <div class="col-lg-6 col-md-6 col-sm-6 p-2 ">
-          <textarea name="" id="input1"></textarea>
-          <div id="input1_count"></div>
-        </div>
-        <div class="col-lg-6 col-md-6 col-sm-6 p-2 ">
-          <textarea name="" id="output1"></textarea>
-          <div id="output1_count"></div>
-        </div>
-      </div>
-      </div>
     </div>
-  </div>
   </body>
 </html>
