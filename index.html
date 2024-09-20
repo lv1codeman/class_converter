@@ -33,9 +33,9 @@
         max-width: 320px; /* 最大寬度 */
         resize: both; /* 允許水平拉伸 */
       }
-      /* #input1 {
+      #input1 {
         text-align: right;
-      } */
+      }
 
       .form-select {
         width: 200px;
@@ -87,8 +87,8 @@
           $("#output1").val("");
           $("#output1").css("width", "200px");
           $("#output1").css("height", "280px");
-          $("#input1_count").text("");
-          $("#output1_count").text("");
+          $("#input1_count").html("&nbsp;");
+          $("#output1_count").html("&nbsp;");
         });
 
         const $toastLiveExample = $("#liveToast");
@@ -358,40 +358,45 @@
       </div>
       <div class="row border mt-1">
         <div class="row">
-          <div class="col-6 p-2">
-            <div class="d-flex flex-wrap gap-2">
-              <select
-                id="convertType"
-                class="form-select"
-                aria-label="Default select example"
-              >
-                <option value="0" selected>班級簡稱</option>
-                <option value="1">班級全名</option>
-                <option value="2">學院簡稱</option>
-                <option value="3">學院全名</option>
-                <option value="4">系辦助理</option>
-                <option value="5">系辦助理分機</option>
-                <option value="6">系辦助理Email</option>
-                <option value="7">課務組承辦人</option>
-                <option value="8">課務組承辦人分機</option>
-                <option value="9">課務組承辦人Email</option>
-              </select>
-              <!-- <button id="btnSubmit" class="btn btn-primary mr-2">Submit</button> -->
-              <button id="btnClear" class="btn btn-primary">Clear</button>
-            </div>
-          </div>
-          <div class="col-6 p-2">
+          <div class="d-flex gap-2 p-2">
+            <select
+              id="convertType"
+              class="form-select"
+              aria-label="Default select example"
+            >
+              <option value="0" selected>班級簡稱</option>
+              <option value="1">班級全名</option>
+              <option value="2">學院簡稱</option>
+              <option value="3">學院全名</option>
+              <option value="4">系辦助理</option>
+              <option value="5">系辦助理分機</option>
+              <option value="6">系辦助理Email</option>
+              <option value="7">課務組承辦人</option>
+              <option value="8">課務組承辦人分機</option>
+              <option value="9">課務組承辦人Email</option>
+            </select>
+            <!-- <button id="btnSubmit" class="btn btn-primary mr-2">Submit</button> -->
+
+            <button id="btnClear" class="btn btn-primary">Clear</button>
             <button id="btnCopy" class="btn btn-success">Copy</button>
           </div>
         </div>
         <div class="row d-flex justify-content-center">
-          <div class="col-lg-6 col-md-6 col-sm-6 p-2">
-            <textarea name="" id="input1"></textarea>
-            <div id="input1_count"></div>
-          </div>
-          <div class="col-lg-6 col-md-6 col-sm-6 p-2">
-            <textarea name="" id="output1"></textarea>
-            <div id="output1_count"></div>
+          <div class="d-flex p-2">
+            <div>
+              <textarea name="" id="input1"></textarea>
+              <div id="input1_count">&nbsp;</div>
+            </div>
+            <div class="d-flex align-items-center p-2">
+              <i
+                class="fa fa-arrow-circle-right"
+                style="font-size: 2rem; padding-bottom: 2rem"
+              ></i>
+            </div>
+            <div>
+              <textarea name="" id="output1"></textarea>
+              <div id="output1_count">&nbsp;</div>
+            </div>
           </div>
         </div>
       </div>
