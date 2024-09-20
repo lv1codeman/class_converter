@@ -33,9 +33,17 @@
         max-width: 320px; /* 最大寬度 */
         resize: both; /* 允許水平拉伸 */
       }
+      /* #input1 {
+        text-align: right;
+      } */
 
       .form-select {
         width: 200px;
+      }
+      #checksign {
+        color: #198754;
+        /* text-shadow: 1px 1px 1px #00d300; */
+        font-size: 1.5em;
       }
       /* #toast-container {
         position: fixed;
@@ -83,49 +91,59 @@
           $("#output1_count").text("");
         });
 
-        const toastTrigger = document.getElementById("liveToastBtn");
-        const toastLiveExample = document.getElementById("liveToast");
-        const toast = new bootstrap.Toast(toastLiveExample);
+        const $toastLiveExample = $("#liveToast");
+        const toast = new bootstrap.Toast($toastLiveExample);
         $("#btnCopy").click(function () {
-          // copyToast.show();
           // 將 textarea2 的內容複製到剪貼簿
           navigator.clipboard
-            .writeText(textarea2.value)
+            .writeText($textarea2.val())
             .then(function () {
-              // alert("Textarea 2 內容已成功複製到剪貼簿!");
               // 顯示 Toast
               toast.show();
-
-              // 兩秒後自動隱藏 Toast
+              // 10秒後自動隱藏 Toast
               setTimeout(function () {
                 toast.hide();
-              }, 5000);
+              }, 10000);
             })
             .catch(function (error) {
               alert("複製失敗: " + error);
             });
         });
 
-        const textarea1 = document.getElementById("input1");
-        const textarea2 = document.getElementById("output1");
+        // const textarea1 = document.getElementById("input1");
+        // const textarea2 = document.getElementById("output1");
 
-        function syncScroll(source, target) {
-          target.scrollTop = source.scrollTop;
-          target.scrollLeft = source.scrollLeft;
+        // function syncScroll(source, target) {
+        //   target.scrollTop = source.scrollTop;
+        //   target.scrollLeft = source.scrollLeft;
+        // }
+
+        // textarea1.addEventListener("scroll", function () {
+        //   syncScroll(textarea1, textarea2);
+        // });
+
+        // textarea2.addEventListener("scroll", function () {
+        //   syncScroll(textarea2, textarea1);
+        // });
+        const $textarea1 = $("#input1");
+        const $textarea2 = $("#output1");
+
+        function syncScroll($source, $target) {
+          $target.scrollTop($source.scrollTop());
+          $target.scrollLeft($source.scrollLeft());
         }
 
-        textarea1.addEventListener("scroll", function () {
-          syncScroll(textarea1, textarea2);
+        $textarea1.on("scroll", function () {
+          syncScroll($textarea1, $textarea2);
         });
 
-        textarea2.addEventListener("scroll", function () {
-          syncScroll(textarea2, textarea1);
+        $textarea2.on("scroll", function () {
+          syncScroll($textarea2, $textarea1);
         });
       }); //End of $(document).ready(async function () {
 
       function doConvert() {
         var content = $("#input1").val();
-        // console.log("粘貼的內容: \n", content); // 檢查粘貼後的內容
 
         // 使用正則表達式處理所有可能的換行符
         var lines = content.trim().split(/[\r\n]+/);
@@ -141,7 +159,7 @@
               break;
             case "特":
               if (second == "特殊") {
-                res.push(1);
+                res.push(0);
               } else {
                 res.push(4);
               }
@@ -338,7 +356,7 @@
         <li>貼上後想看不同結果可選擇下拉選項</li>
         <li>可將結果複製貼回Excel中使用。</li>
       </div>
-      <div class="row border">
+      <div class="row border mt-1">
         <div class="row">
           <div class="col-6 p-2">
             <div class="d-flex flex-wrap gap-2">
@@ -378,11 +396,7 @@
         </div>
       </div>
     </div>
-    <!-- 
-    <button type="button" class="btn btn-primary" id="liveToastBtn">
-      Show live toast
-    </button> -->
-
+    <!-- toast 文字提示 -->
     <div class="toast-container position-fixed bottom-0 end-0 p-3">
       <div
         id="liveToast"
@@ -392,7 +406,11 @@
         aria-atomic="true"
       >
         <div class="toast-header">
-          <i class="fa fa-check-circle me-2" aria-hidden="true"></i>
+          <i
+            id="checksign"
+            class="fa fa-check-circle me-2"
+            aria-hidden="true"
+          ></i>
           <strong class="me-auto">複製成功</strong>
           <small>完成</small>
           <button
